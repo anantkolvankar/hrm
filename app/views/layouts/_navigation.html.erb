@@ -1,0 +1,8 @@
+<%= link_to "Corporate", new_corporate_session_path %>
+<%= link_to "Consultant", new_consultant_session_path %>
+<% if consultant_signed_in? %>
+<%= link_to "Consultant sign out", destroy_consultant_session_path, :method => "delete" %>
+<% end %>
+<% if corporate_signed_in? %>
+<%= link_to "Corporate sign out", destroy_corporate_session_path, :method => "delete" %>
+<% end %>
