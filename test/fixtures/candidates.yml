@@ -1,0 +1,59 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  first_name: MyString
+  last_name: MyString
+  email: MyString
+  phone: 1
+  address: MyText
+  address2: MyText
+  city: MyString
+  postal_code: 1
+  state: MyString
+  country: MyString
+  current_company_id: 
+  current_branch_id: 
+  industry_id: 
+  job_title: MyString
+  current_Level_id: 
+  current_package: MyString
+  previous_company_id: 
+  previous_branch_id: 
+  previous_industry_id: 
+  previous_job_title: MyString
+  previous_level_id: 
+  previous_package: MyString
+  reason: MyText
+  proof: MyString
+  type: 
+  linked_in: MyString
+  resume: MyString
+
+two:
+  first_name: MyString
+  last_name: MyString
+  email: MyString
+  phone: 1
+  address: MyText
+  address2: MyText
+  city: MyString
+  postal_code: 1
+  state: MyString
+  country: MyString
+  current_company_id: 
+  current_branch_id: 
+  industry_id: 
+  job_title: MyString
+  current_Level_id: 
+  current_package: MyString
+  previous_company_id: 
+  previous_branch_id: 
+  previous_industry_id: 
+  previous_job_title: MyString
+  previous_level_id: 
+  previous_package: MyString
+  reason: MyText
+  proof: MyString
+  type: 
+  linked_in: MyString
+  resume: MyString

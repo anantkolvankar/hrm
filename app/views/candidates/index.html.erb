@@ -1,0 +1,79 @@
+<h1>Listing candidates</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>First name</th>
+      <th>Last name</th>
+      <th>Email</th>
+      <th>Phone</th>
+      <th>Address</th>
+      <th>Address2</th>
+      <th>City</th>
+      <th>Postal code</th>
+      <th>State</th>
+      <th>Country</th>
+      <th>Current company</th>
+      <th>Current branch</th>
+      <th>Industry</th>
+      <th>Job title</th>
+      <th>Current level</th>
+      <th>Current package</th>
+      <th>Previous company</th>
+      <th>Previous branch</th>
+      <th>Previous industry</th>
+      <th>Previous job title</th>
+      <th>Previous level</th>
+      <th>Previous package</th>
+      <th>Reason</th>
+      <th>Proof</th>
+      <th>Type</th>
+      <th>Linked in</th>
+      <th>Resume</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @candidates.each do |candidate| %>
+      <tr>
+        <td><%= candidate.first_name %></td>
+        <td><%= candidate.last_name %></td>
+        <td><%= candidate.email %></td>
+        <td><%= candidate.phone %></td>
+        <td><%= candidate.address %></td>
+        <td><%= candidate.address2 %></td>
+        <td><%= candidate.city %></td>
+        <td><%= candidate.postal_code %></td>
+        <td><%= candidate.state %></td>
+        <td><%= candidate.country %></td>
+        <td><%= candidate.current_company %></td>
+        <td><%= candidate.current_branch %></td>
+        <td><%= candidate.industry %></td>
+        <td><%= candidate.job_title %></td>
+        <td><%= candidate.current_Level %></td>
+        <td><%= candidate.current_package %></td>
+        <td><%= candidate.previous_company %></td>
+        <td><%= candidate.previous_branch %></td>
+        <td><%= candidate.previous_industry %></td>
+        <td><%= candidate.previous_job_title %></td>
+        <td><%= candidate.previous_level %></td>
+        <td><%= candidate.previous_package %></td>
+        <td><%= candidate.reason %></td>
+        <td><%= candidate.proof %></td>
+        <td><%= candidate.type %></td>
+        <td><%= candidate.linked_in %></td>
+        <td><%= candidate.resume %></td>
+        <td><%= link_to 'Show', candidate %></td>
+        <td><%= link_to 'Edit', edit_candidate_path(candidate) %></td>
+        <td><%= link_to 'Destroy', candidate, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Candidate', new_candidate_path %>

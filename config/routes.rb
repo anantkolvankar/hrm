@@ -1,4 +1,14 @@
 Hrm::Application.routes.draw do
+  resources :candidates
+
+  resources :levels
+
+  resources :branches
+
+  resources :industries
+
+  resources :companies
+
   root "home#index"
   devise_for :corporates
   devise_for :consultants

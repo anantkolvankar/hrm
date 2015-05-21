@@ -11,7 +11,72 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141205034509) do
+ActiveRecord::Schema.define(version: 20150521184610) do
+
+  create_table "branches", force: true do |t|
+    t.string   "name"
+    t.integer  "company_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "branches", ["company_id"], name: "index_branches_on_company_id", using: :btree
+
+  create_table "candidates", force: true do |t|
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "email"
+    t.integer  "phone"
+    t.text     "address"
+    t.text     "address2"
+    t.string   "city"
+    t.integer  "postal_code"
+    t.string   "state"
+    t.string   "country"
+    t.integer  "current_company_id"
+    t.integer  "current_branch_id"
+    t.integer  "industry_id"
+    t.string   "job_title"
+    t.integer  "current_Level_id"
+    t.string   "current_package"
+    t.integer  "previous_company_id"
+    t.integer  "previous_branch_id"
+    t.integer  "previous_industry_id"
+    t.string   "previous_job_title"
+    t.integer  "previous_level_id"
+    t.string   "previous_package"
+    t.text     "reason"
+    t.string   "proof"
+    t.string   "type"
+    t.string   "linked_in"
+    t.string   "resume"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "candidates", ["current_Level_id"], name: "index_candidates_on_current_Level_id", using: :btree
+  add_index "candidates", ["current_branch_id"], name: "index_candidates_on_current_branch_id", using: :btree
+  add_index "candidates", ["current_company_id"], name: "index_candidates_on_current_company_id", using: :btree
+  add_index "candidates", ["industry_id"], name: "index_candidates_on_industry_id", using: :btree
+  add_index "candidates", ["previous_branch_id"], name: "index_candidates_on_previous_branch_id", using: :btree
+  add_index "candidates", ["previous_company_id"], name: "index_candidates_on_previous_company_id", using: :btree
+  add_index "candidates", ["previous_industry_id"], name: "index_candidates_on_previous_industry_id", using: :btree
+  add_index "candidates", ["previous_level_id"], name: "index_candidates_on_previous_level_id", using: :btree
+
+  create_table "companies", force: true do |t|
+    t.string   "website"
+    t.string   "name"
+    t.string   "phone"
+    t.text     "address"
+    t.text     "address2"
+    t.string   "city"
+    t.string   "state"
+    t.integer  "postal_code"
+    t.integer  "employee_strength"
+    t.string   "revenue"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "consultants", force: true do |t|
     t.string   "email",                  default: "", null: false
@@ -70,5 +135,17 @@ ActiveRecord::Schema.define(version: 20141205034509) do
 
   add_index "corporates", ["email"], name: "index_corporates_on_email", unique: true, using: :btree
   add_index "corporates", ["reset_password_token"], name: "index_corporates_on_reset_password_token", unique: true, using: :btree
+
+  create_table "industries", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "levels", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
 end

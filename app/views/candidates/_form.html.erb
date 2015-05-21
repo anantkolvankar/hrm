@@ -1,0 +1,125 @@
+<%= form_for(@candidate) do |f| %>
+  <% if @candidate.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@candidate.errors.count, "error") %> prohibited this candidate from being saved:</h2>
+
+      <ul>
+      <% @candidate.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :first_name %><br>
+    <%= f.text_field :first_name %>
+  </div>
+  <div class="field">
+    <%= f.label :last_name %><br>
+    <%= f.text_field :last_name %>
+  </div>
+  <div class="field">
+    <%= f.label :email %><br>
+    <%= f.text_field :email %>
+  </div>
+  <div class="field">
+    <%= f.label :phone %><br>
+    <%= f.number_field :phone %>
+  </div>
+  <div class="field">
+    <%= f.label :address %><br>
+    <%= f.text_area :address %>
+  </div>
+  <div class="field">
+    <%= f.label :address2 %><br>
+    <%= f.text_area :address2 %>
+  </div>
+  <div class="field">
+    <%= f.label :city %><br>
+    <%= f.text_field :city %>
+  </div>
+  <div class="field">
+    <%= f.label :postal_code %><br>
+    <%= f.number_field :postal_code %>
+  </div>
+  <div class="field">
+    <%= f.label :state %><br>
+    <%= f.text_field :state %>
+  </div>
+  <div class="field">
+    <%= f.label :country %><br>
+    <%= f.text_field :country %>
+  </div>
+  <div class="field">
+    <%= f.label :current_company %><br>
+    <%= f.text_field :current_company %>
+  </div>
+  <div class="field">
+    <%= f.label :current_branch %><br>
+    <%= f.text_field :current_branch %>
+  </div>
+  <div class="field">
+    <%= f.label :industry %><br>
+    <%= f.text_field :industry %>
+  </div>
+  <div class="field">
+    <%= f.label :job_title %><br>
+    <%= f.text_field :job_title %>
+  </div>
+  <div class="field">
+    <%= f.label :current_Level %><br>
+    <%= f.text_field :current_Level %>
+  </div>
+  <div class="field">
+    <%= f.label :current_package %><br>
+    <%= f.text_field :current_package %>
+  </div>
+  <div class="field">
+    <%= f.label :previous_company %><br>
+    <%= f.text_field :previous_company %>
+  </div>
+  <div class="field">
+    <%= f.label :previous_branch %><br>
+    <%= f.text_field :previous_branch %>
+  </div>
+  <div class="field">
+    <%= f.label :previous_industry %><br>
+    <%= f.text_field :previous_industry %>
+  </div>
+  <div class="field">
+    <%= f.label :previous_job_title %><br>
+    <%= f.text_field :previous_job_title %>
+  </div>
+  <div class="field">
+    <%= f.label :previous_level %><br>
+    <%= f.text_field :previous_level %>
+  </div>
+  <div class="field">
+    <%= f.label :previous_package %><br>
+    <%= f.text_field :previous_package %>
+  </div>
+  <div class="field">
+    <%= f.label :reason %><br>
+    <%= f.text_area :reason %>
+  </div>
+  <div class="field">
+    <%= f.label :proof %><br>
+    <%= f.text_field :proof %>
+  </div>
+  <div class="field">
+    <%= f.label :type %><br>
+    <%= f.text_field :type %>
+  </div>
+  <div class="field">
+    <%= f.label :linked_in %><br>
+    <%= f.text_field :linked_in %>
+  </div>
+  <div class="field">
+    <%= f.label :resume %><br>
+    <%= f.text_field :resume %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
