@@ -28,7 +28,8 @@ class CreateCandidates < ActiveRecord::Migration
       t.string :type
       t.string :linked_in
       t.string :resume
-
+      t.references :uploaded, polymorphic: true, index: true
+      
       t.timestamps
     end
   end

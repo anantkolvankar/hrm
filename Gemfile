@@ -11,14 +11,14 @@ gem 'sass-rails', '~> 4.0.0'
 gem 'mysql2'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
-
+gem 'pry'
 # Use CoffeeScript for .js.coffee assets and views
 gem 'coffee-rails', '~> 4.0.0'
-
+gem 'delayed_job', github: 'collectiveidea/delayed_job'
+gem 'delayed_job_active_record'
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 gem 'therubyracer', platforms: :ruby
-
-gem 'mysql2'
+gem 'smarter_csv'
 gem 'devise'
 # Use jquery as the JavaScript library
 gem 'jquery-rails'

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150521184610) do
+ActiveRecord::Schema.define(version: 20150522194120) do
 
   create_table "branches", force: true do |t|
     t.string   "name"
@@ -50,6 +50,8 @@ ActiveRecord::Schema.define(version: 20150521184610) do
     t.string   "type"
     t.string   "linked_in"
     t.string   "resume"
+    t.integer  "uploaded_id"
+    t.string   "uploaded_type"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -62,6 +64,7 @@ ActiveRecord::Schema.define(version: 20150521184610) do
   add_index "candidates", ["previous_company_id"], name: "index_candidates_on_previous_company_id", using: :btree
   add_index "candidates", ["previous_industry_id"], name: "index_candidates_on_previous_industry_id", using: :btree
   add_index "candidates", ["previous_level_id"], name: "index_candidates_on_previous_level_id", using: :btree
+  add_index "candidates", ["uploaded_id", "uploaded_type"], name: "index_candidates_on_uploaded_id_and_uploaded_type", using: :btree
 
   create_table "companies", force: true do |t|
     t.string   "website"
@@ -102,6 +105,7 @@ ActiveRecord::Schema.define(version: 20150521184610) do
     t.string   "country"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "point"
   end
 
   add_index "consultants", ["email"], name: "index_consultants_on_email", unique: true, using: :btree
@@ -131,10 +135,27 @@ ActiveRecord::Schema.define(version: 20150521184610) do
     t.string   "country"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "point"
   end
 
   add_index "corporates", ["email"], name: "index_corporates_on_email", unique: true, using: :btree
   add_index "corporates", ["reset_password_token"], name: "index_corporates_on_reset_password_token", unique: true, using: :btree
+
+  create_table "delayed_jobs", force: true do |t|
+    t.integer  "priority",   default: 0, null: false
+    t.integer  "attempts",   default: 0, null: false
+    t.text     "handler",                null: false
+    t.text     "last_error"
+    t.datetime "run_at"
+    t.datetime "locked_at"
+    t.datetime "failed_at"
+    t.string   "locked_by"
+    t.string   "queue"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "delayed_jobs", ["priority", "run_at"], name: "delayed_jobs_priority", using: :btree
 
   create_table "industries", force: true do |t|
     t.string   "name"
