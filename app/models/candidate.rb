@@ -31,56 +31,78 @@ class Candidate < ActiveRecord::Base
   def give_points_into_uploader
     puts "Hello"
     puts self.uploaded
+    uploadar = self.uploaded
+    binding.pry      
+    uploadar.point = uploadar.point + 10
+    uploadar.save
+    
   end
   
   class << self
-    def import(path)
+    def import(path, user)
 binding.pry      
       begin
         i=0
-        CSV.foreach(path, headers: true,:col_sep => ",") do |row|
+        CSV.foreach(path, headers: true,:col_sep => '"') do |row|
           
           candidate = find_by_email(row["email"]) || new
     
-          current_company = Company.find_by_name(row["current_company"]) || create
-          current_branch = Branch.find_by_name(row["current_branch"]) || new
+          current_company = Company.find_by_name(row["current_company"]) || Company.create(name: row["current_company"])
+          current_branch = Branch.find_by_name(row["current_branch"]) || Branch.new(name: row["current_branch"])
           current_branch.company = current_company
           current_branch.save
 
-          industry = Industry.find_by_name(row["industry"]) || create
-          current_Level = Level.find_by_name(row["current_Level"]) || create
+          industry = Industry.find_by_name(row["industry"]) || Industry.create(name: row["industry"])
+          current_Level = Level.find_by_name(row["current_Level"]) || Level.create(name: row["current_Level"])
           
-          previous_company = Company.find_by_name(row["previous_company"]) || create
-          previous_branch = Branch.find_by_name(row["previous_branch"]) || new
+          previous_company = Company.find_by_name(row["previous_company"]) || Company.create(name: row["previous_company"])
+          previous_branch = Branch.find_by_name(row["previous_branch"]) || Branch.new(name: row["previous_branch"])
           previous_branch.company = previous_company
           previous_branch.save
 
-          previous_industry = Industry.find_by_name(row["previous_industry"]) || create
-          previous_level = Level.find_by_name(row["previous_level"]) || create
+          previous_industry = Industry.find_by_name(row["previous_industry"]) || Industry.create(name: row["previous_industry"])
+          previous_level = Level.find_by_name(row["previous_level"]) || Level.create(name: row["previous_level"])
+          
+          candidate.current_branch = current_branch
+          candidate.current_company = current_company
+          candidate.industry = industry
+          candidate.current_Level = current_Level
+          
+          candidate.previous_level = previous_level
+          candidate.previous_industry = previous_industry
+          candidate.previous_branch = previous_branch
+          candidate.previous_company = previous_company
+          
+          h=row.to_hash
+          f=[nil,";","\t","current_company","current_branch","industry","previous_company","previous_branch","previous_industry","previous_level","current_Level"]
+          f.each do |i|
+            h.delete(i)
+          end
+          candidate.uploaded =  user
     binding.pry   
-          candidate.attributes = row.to_hash
+          candidate.attributes = h
           candidate.save!
           i += 1
           #candidate.create! row.to_hash
         end
         # Send mail about success of import
-        Notifier.import_status(path,i).deliver
+       # //Notifier.import_status(path,i).deliver
       rescue
         # Unable to import csv
-        Notifier.import_error(path,"Invalid file format").deliver
+        #Notifier.import_error(path,"Invalid file format").deliver
       end
     end
   #Used to Send import task in BackGround using delayed_job
    # handle_asynchronously :import
   end
 
-  def self.from_csv(file)
+  def self.from_csv(file, user)
     
     name = "#{Rails.root}/public/uploads/csv/csv-#{DateTime.now.to_i}.csv"
     File.open name, 'wb' do |f|
       f.write file.read
     end
-    self.import(name)
+    self.import(name, user)
   end
 
 end
