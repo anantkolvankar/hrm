@@ -37,7 +37,7 @@ ActiveRecord::Schema.define(version: 20150522194120) do
     t.integer  "current_branch_id"
     t.integer  "industry_id"
     t.string   "job_title"
-    t.integer  "current_Level_id"
+    t.integer  "current_level_id"
     t.string   "current_package"
     t.integer  "previous_company_id"
     t.integer  "previous_branch_id"
@@ -56,9 +56,9 @@ ActiveRecord::Schema.define(version: 20150522194120) do
     t.datetime "updated_at"
   end
 
-  add_index "candidates", ["current_Level_id"], name: "index_candidates_on_current_Level_id", using: :btree
   add_index "candidates", ["current_branch_id"], name: "index_candidates_on_current_branch_id", using: :btree
   add_index "candidates", ["current_company_id"], name: "index_candidates_on_current_company_id", using: :btree
+  add_index "candidates", ["current_level_id"], name: "index_candidates_on_current_level_id", using: :btree
   add_index "candidates", ["industry_id"], name: "index_candidates_on_industry_id", using: :btree
   add_index "candidates", ["previous_branch_id"], name: "index_candidates_on_previous_branch_id", using: :btree
   add_index "candidates", ["previous_company_id"], name: "index_candidates_on_previous_company_id", using: :btree
@@ -105,7 +105,7 @@ ActiveRecord::Schema.define(version: 20150522194120) do
     t.string   "country"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "point"
+    t.integer  "point",                  default: 20
   end
 
   add_index "consultants", ["email"], name: "index_consultants_on_email", unique: true, using: :btree
@@ -135,7 +135,7 @@ ActiveRecord::Schema.define(version: 20150522194120) do
     t.string   "country"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "point"
+    t.integer  "point",                  default: 20
   end
 
   add_index "corporates", ["email"], name: "index_corporates_on_email", unique: true, using: :btree

@@ -8,9 +8,9 @@ class Candidate < ActiveRecord::Base
                 :foreign_key  => "current_branch_id"
 
   belongs_to :industry
-  belongs_to :current_Level,
+  belongs_to :current_level,
                 :class_name => "Level",
-                :foreign_key  => "current_Level_id"
+                :foreign_key  => "current_level_id"
   belongs_to :previous_company,
                 :class_name => "Company",
                 :foreign_key  => "previous_company_id"
@@ -40,7 +40,7 @@ class Candidate < ActiveRecord::Base
   
   class << self
     def import(path, user)
-binding.pry      
+#binding.pry      
       begin
         i=0
         CSV.foreach(path, headers: true,:col_sep => '"') do |row|
@@ -53,7 +53,7 @@ binding.pry
           current_branch.save
 
           industry = Industry.find_by_name(row["industry"]) || Industry.create(name: row["industry"])
-          current_Level = Level.find_by_name(row["current_Level"]) || Level.create(name: row["current_Level"])
+          current_level = Level.find_by_name(row["current_level"]) || Level.create(name: row["current_level"])
           
           previous_company = Company.find_by_name(row["previous_company"]) || Company.create(name: row["previous_company"])
           previous_branch = Branch.find_by_name(row["previous_branch"]) || Branch.new(name: row["previous_branch"])
@@ -66,7 +66,7 @@ binding.pry
           candidate.current_branch = current_branch
           candidate.current_company = current_company
           candidate.industry = industry
-          candidate.current_Level = current_Level
+          candidate.current_level = current_level
           
           candidate.previous_level = previous_level
           candidate.previous_industry = previous_industry
@@ -74,12 +74,12 @@ binding.pry
           candidate.previous_company = previous_company
           
           h=row.to_hash
-          f=[nil,";","\t","current_company","current_branch","industry","previous_company","previous_branch","previous_industry","previous_level","current_Level"]
+          f=[nil,";","\t","current_company","current_branch","industry","previous_company","previous_branch","previous_industry","previous_level","current_level"]
           f.each do |i|
             h.delete(i)
           end
           candidate.uploaded =  user
-    binding.pry   
+    #binding.pry   
           candidate.attributes = h
           candidate.save!
           i += 1

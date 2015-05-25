@@ -15,7 +15,7 @@ class CreateCandidates < ActiveRecord::Migration
       t.references :current_branch, index: true
       t.references :industry, index: true
       t.string :job_title
-      t.references :current_Level, index: true
+      t.references :current_level, index: true
       t.string :current_package
       t.references :previous_company, index: true
       t.references :previous_branch, index: true
