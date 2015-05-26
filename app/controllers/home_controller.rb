@@ -1,5 +1,6 @@
 class HomeController < ApplicationController
   def index
+    @candidates = Candidate.all
   end
 
   def csv_upload

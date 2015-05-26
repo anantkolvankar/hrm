@@ -1,7 +1,21 @@
-<h1>Upload csv</h1>
-<%= form_tag import_csv_path, multipart: true,:class =>'form-horizontal' do %>
-<div class="form-group">
-  <%= file_field_tag 'candidate[file]',:class =>'form-control' %>
-</div>
-  <%= submit_tag "Import CSV" %>
-<% end %>
+<%= @candidates %>
+<table class="table">
+        <thead>
+            <tr>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Email</th>
+            </tr>
+        </thead>
+        <tbody>
+        <% @candidates.each do |candidate| %>
+            <tr>
+               
+                <td><%= candidate.first_name %></td>
+                <td><%= candidate.last_name %></td>
+                <td><%= candidate.email %></td>
+            </tr>
+        <% end %>    
+            
+        </tbody>
+    </table>

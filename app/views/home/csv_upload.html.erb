@@ -1,7 +1,7 @@
 <h1>Upload csv</h1>
 <%= form_tag import_csv_path, multipart: true,:class =>'form-horizontal' do %>
 <div class="form-group">
-  <%= file_field_tag 'student[file]',:class =>'form-control' %>
+  <%= file_field_tag 'candidate[file]',:class =>'form-control' %>
 </div>
   <%= submit_tag "Import CSV" %>
 <% end %>

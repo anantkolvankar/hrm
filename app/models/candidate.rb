@@ -43,7 +43,7 @@ class Candidate < ActiveRecord::Base
 #binding.pry      
       begin
         i=0
-        CSV.foreach(path, headers: true,:col_sep => '"') do |row|
+        CSV.foreach(path, headers: true,:col_sep => ',') do |row|
           
           candidate = find_by_email(row["email"]) || new
     

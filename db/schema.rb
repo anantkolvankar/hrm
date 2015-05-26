@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150522194120) do
+ActiveRecord::Schema.define(version: 20150526193504) do
 
   create_table "branches", force: true do |t|
     t.string   "name"
@@ -47,7 +47,7 @@ ActiveRecord::Schema.define(version: 20150522194120) do
     t.string   "previous_package"
     t.text     "reason"
     t.string   "proof"
-    t.string   "type"
+    t.string   "candidate_type"
     t.string   "linked_in"
     t.string   "resume"
     t.integer  "uploaded_id"
