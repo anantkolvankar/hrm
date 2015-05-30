@@ -1,8 +1,15 @@
-<%= link_to "Corporate", new_corporate_session_path %>
-<%= link_to "Consultant", new_consultant_session_path %>
+<%unless @current_user.blank? -%>
+<%= link_to "Import Contacts", csv_upload_path %>
+signed in
+<%else -%>
+not signed in
+<%= link_to "Corporate Login", new_corporate_session_path %>
+<%= link_to "Consultant Login", new_consultant_session_path %>
+<%end-%>
+
 <% if consultant_signed_in? %>
-<%= link_to "Consultant sign out", destroy_consultant_session_path, :method => "delete" %>
+<%= link_to "#{current_consultant.point} #{current_corporate.email}Consultant sign out", destroy_consultant_session_path, :method => "delete" %>
 <% end %>
 <% if corporate_signed_in? %>
-<%= link_to "Corporate sign out", destroy_corporate_session_path, :method => "delete" %>
+<%= link_to "#{current_corporate.point} #{current_corporate.email}Corporate sign out", destroy_corporate_session_path, :method => "delete" %>
 <% end %>

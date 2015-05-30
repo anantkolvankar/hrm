@@ -14,4 +14,8 @@ class HomeController < ApplicationController
    end
   end
 
+  def dashboard
+    puts "dashboard"
+     @candidates = Candidate.all
+  end
 end

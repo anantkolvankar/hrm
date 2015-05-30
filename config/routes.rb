@@ -14,6 +14,7 @@ Hrm::Application.routes.draw do
   devise_for :consultants
   get 'csv_upload' => "home#csv_upload"
   post 'import_csv' => "home#import_csv"
+  get 'dashboard' => "home#dashboard"
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
