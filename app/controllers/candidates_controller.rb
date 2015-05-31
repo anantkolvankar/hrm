@@ -9,7 +9,14 @@ class CandidatesController < ApplicationController
   end
 
   def show
-    respond_with(@candidate)
+    #binding.pry
+    if(@candidate.reduce_points_of_profile_viewer @current_user)
+
+      respond_with(@candidate)
+    else
+      flash[:notice] = "You don't have enough points to view this candidate"
+      redirect_to dashboard_path
+    end
   end
 
   def new

@@ -32,12 +32,29 @@ class Candidate < ActiveRecord::Base
     puts "Hello"
     puts self.uploaded
     uploadar = self.uploaded
-    binding.pry      
+    #binding.pry      
     uploadar.point = uploadar.point + 10
     uploadar.save
     
   end
   
+  def reduce_points_of_profile_viewer user
+#binding.pry
+    
+  if(user.point > 0)
+    if self.uploaded != user
+      user.point = user.point - 10
+      user.save
+    else
+      puts "owner viewed"
+      true
+    end
+    true
+  else
+    false
+  end
+  end
+
   class << self
     def import(path, user)
 #binding.pry      

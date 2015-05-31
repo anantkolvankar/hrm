@@ -10,7 +10,7 @@ class HomeController < ApplicationController
   def import_csv
    Candidate.from_csv(params[:candidate][:file], @current_user)
    respond_to do |format|
-    format.html { redirect_to root_path, :notice => 'Students successfully imported' }
+    format.html { redirect_to dashboard_path, :notice => 'Students successfully imported' }
    end
   end
 

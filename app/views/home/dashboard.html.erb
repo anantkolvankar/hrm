@@ -1,4 +1,3 @@
-<%= @candidates %>
 <table class="table">
         <thead>
             <tr>
@@ -11,7 +10,7 @@
         <% @candidates.each do |candidate| %>
             <tr>
                
-                <td><%= candidate.first_name %></td>
+                <td><%= link_to candidate.first_name, controller: "candidates", action:"show",id: candidate %></td>
                 <td><%= candidate.last_name %></td>
                 <td><%= candidate.email %></td>
             </tr>
