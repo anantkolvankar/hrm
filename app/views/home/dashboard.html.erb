@@ -15,6 +15,6 @@
                 <td><%= candidate.email %></td>
             </tr>
         <% end %>    
-            
         </tbody>
     </table>
+     <%= will_paginate @candidates, renderer: BootstrapPagination::Rails %>

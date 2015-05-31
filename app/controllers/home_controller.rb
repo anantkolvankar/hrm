@@ -16,6 +16,6 @@ class HomeController < ApplicationController
 
   def dashboard
     puts "dashboard"
-     @candidates = Candidate.all
+     @candidates = Candidate.paginate(:page => params[:page], :per_page => 1)
   end
 end
