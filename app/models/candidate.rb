@@ -122,4 +122,8 @@ class Candidate < ActiveRecord::Base
     self.import(name, user)
   end
 
+  def self.search(search)
+   where("email LIKE ? or first_name LIKE ? or last_name LIKE ?", "%#{search}%", "%#{search}%", "%#{search}")
+  end
+
 end

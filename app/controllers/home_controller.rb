@@ -16,6 +16,10 @@ class HomeController < ApplicationController
 
   def dashboard
     puts "dashboard"
-     @candidates = Candidate.paginate(:page => params[:page], :per_page => 1)
-  end
+    if params[:search]
+      @candidates = Candidate.search(params[:search]).order("created_at DESC").paginate(:page => params[:page], :per_page => 5)
+    else
+     @candidates = Candidate.paginate(:page => params[:page], :per_page => 5)
+   end
+end
 end
